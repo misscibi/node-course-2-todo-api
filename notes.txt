@@ -1,0 +1,4 @@
+Microsoft Windows [Version 10.0.16299.125]
+(c) 2017 Microsoft Corporation. All rights reserved.
+
+C:\Program Files\MongoDB\Server\3.6\bin>mongod.exe --dbpath "C:\Users\CB\mongo-data"
