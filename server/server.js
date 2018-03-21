@@ -1,3 +1,5 @@
+// Express route handlers will be stored in server.js
+
 var express = require('express');
 var bodyParser = require('body-parser');
 
@@ -33,6 +35,8 @@ app.post('/todos', (request, result) => {
 app.listen(3000, () => {
     console.log('Started on port 3000');
 });
+
+module.exports = {app};
 
 // var newTodo = new Todo({
 //     text: 'Noctis to fish bass for dinner',
