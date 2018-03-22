@@ -2,3 +2,25 @@ Microsoft Windows [Version 10.0.16299.125]
 (c) 2017 Microsoft Corporation. All rights reserved.
 
 C:\Program Files\MongoDB\Server\3.6\bin>mongod.exe --dbpath "C:\Users\CB\mongo-data"
+
+
+C:\Users\CB\WebstormProjects\node-todo-api>heroku create
+Creating app... done, ⬢ damp-fortress-44531
+https://damp-fortress-44531.herokuapp.com/ | https://git.heroku.com/damp-fortress-44531.git
+
+C:\Users\CB\WebstormProjects\node-todo-api>heroku addons:create mongolab:sandbox
+Creating mongolab:sandbox on damp-fortress-44531... !
+ !    Please verify your account to install this add-on plan (please enter a credit card) For more information, see https://devcenter.heroku.com/categories/billing Verify now at
+ !    https://heroku.com/verify
+
+C:\Users\CB\WebstormProjects\node-todo-api>heroku addons:create mongolab:sandbox
+Creating mongolab:sandbox on damp-fortress-44531... free
+Welcome to mLab.  Your new subscription is being created and will be available shortly.  Please consult the mLab Add-on Admin UI to check on its progress.
+Created mongolab-rigid-92237 as MONGODB_URI
+Use heroku addons:docs mongolab to view documentation
+
+C:\Users\CB\WebstormProjects\node-todo-api>heroku config
+=== damp-fortress-44531 Config Vars
+MONGODB_URI: mongodb://heroku_f2vqrcj8:f31alr7d6qn98ata37ein3nut8@ds121589.mlab.com:21589/heroku_f2vqrcj8
+
+C:\Users\CB\WebstormProjects\node-todo-api>

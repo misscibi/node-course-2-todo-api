@@ -9,6 +9,8 @@ var {Todo} = require('./models/todo');
 var {User} = require('./models/user');
 
 var app = express();
+const port = process.env.PORT || 3000;
+// Setting heroku - set port, then set the npm start script and npm node engine, then set mongoose mongodb URI
 
 // the bodyParser.json() return value is a function that will be used as middleware
 app.use(bodyParser.json());
@@ -76,8 +78,8 @@ app.get('/todos/:id', (request, response) => {
             // 400 - and send back an empty body
 });
 
-app.listen(3000, () => {
-    console.log('Started on port 3000');
+app.listen(port, () => {
+    console.log(`Started on port ${port}`);
 });
 
 module.exports = {app};
