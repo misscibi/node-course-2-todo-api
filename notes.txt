@@ -24,3 +24,25 @@ C:\Users\CB\WebstormProjects\node-todo-api>heroku config
 MONGODB_URI: mongodb://heroku_f2vqrcj8:f31alr7d6qn98ata37ein3nut8@ds121589.mlab.com:21589/heroku_f2vqrcj8
 
 C:\Users\CB\WebstormProjects\node-todo-api>
+
+C:\Users\CB\WebstormProjects\node-todo-api>heroku logs
+2018-03-22T04:00:49.115631+00:00 app[api]: Initial release by user cnalangan@gmail.com
+2018-03-22T04:00:49.115631+00:00 app[api]: Release v1 created by user cnalangan@gmail.com
+2018-03-22T04:00:49.218955+00:00 app[api]: Enable Logplex by user cnalangan@gmail.com
+2018-03-22T04:00:49.218955+00:00 app[api]: Release v2 created by user cnalangan@gmail.com
+2018-03-22T04:04:36.294785+00:00 app[api]: Attach MONGODB (@ref:mongolab-rigid-92237) by user cnalangan@gmail.com
+2018-03-22T04:04:36.294785+00:00 app[api]: Release v3 created by user cnalangan@gmail.com
+2018-03-22T04:10:23.000000+00:00 app[api]: Build started by user cnalangan@gmail.com
+2018-03-22T04:10:37.748111+00:00 app[api]: Deploy a33aaae5 by user cnalangan@gmail.com
+2018-03-22T04:10:37.748111+00:00 app[api]: Release v4 created by user cnalangan@gmail.com
+2018-03-22T04:10:37.767193+00:00 app[api]: Scaled to web@1:Free by user cnalangan@gmail.com
+2018-03-22T04:10:23.000000+00:00 app[api]: Build succeeded
+2018-03-22T04:10:40.175718+00:00 heroku[web.1]: Starting process with command `npm start`
+2018-03-22T04:10:42.403097+00:00 app[web.1]:
+2018-03-22T04:10:42.403121+00:00 app[web.1]: > todo-api@1.0.0 start /app
+2018-03-22T04:10:42.403122+00:00 app[web.1]: > node server/server.js
+2018-03-22T04:10:42.403123+00:00 app[web.1]:
+2018-03-22T04:10:43.114570+00:00 app[web.1]: Started on port 31143
+2018-03-22T04:10:43.389908+00:00 heroku[web.1]: State changed from starting to up
+
+C:\Users\CB\WebstormProjects\node-todo-api>
