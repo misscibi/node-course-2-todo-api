@@ -1,8 +1,8 @@
 // Express route handlers will be stored in server.js
-
-var express = require('express');
-var bodyParser = require('body-parser');
-var {ObjectID} = require('mongodb');
+const _ = require('lodash');
+const express = require('express');
+const bodyParser = require('body-parser');
+const {ObjectID} = require('mongodb');
 
 var {mongoose} = require('./db/mongoose');
 var {Todo} = require('./models/todo');
@@ -101,6 +101,31 @@ app.delete('/todos/:id', (request, response) => {
     }).catch((error) => {
         response.status(400).send(error.message);
     });
+});
+
+app.patch('/todos/:id', (request, response) => {
+    var id = request.params.id;
+    var body = _.pick(request.body, ['text', 'completed']); // properties text and completed can only be edited by user
+
+    if (!ObjectID.isValid(id)) {
+        return response.status(404).send();
+    }
+
+    if (_.isBoolean(body.completed) && body.completed) {
+        body.completedAt = new Date().getTime();
+    } else {
+        body.completed = false;
+        body.completedAt = null;
+    }
+
+    // new: true === returnOriginal: false
+    Todo.findByIdAndUpdate(id, {$set: body}, {new: true}).then((todo) => {
+        if (!todo) {
+            return response.status(404).send();
+        }
+
+        response.send({todo});
+    }).catch((error) => response.status(400).send());
 });
 
 app.listen(port, () => {
