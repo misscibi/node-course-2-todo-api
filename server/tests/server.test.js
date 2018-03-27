@@ -10,7 +10,9 @@ const todos = [{
     text: 'First test todo'
 }, {
     _id: new ObjectID(),
-    text: 'Second test todo'
+    text: 'Second test todo',
+    completed: true,
+    completedAt: 333
 }];
 // const todos = [{
 //     text: 'First test todo'
@@ -152,4 +154,69 @@ describe('DELETE /todos/:id', () => {
             .expect(404)
             .end(done);
     });
-})
+});
+
+describe('PATCH /todos/:id', () => {
+    it('should update the todo', (done) => {
+        // grab id of first item
+        // update text, set completed to true
+        // assert: 200
+        // assert: text is changed, completed is true, completedAT is a number .toBeA
+        var hexId = todos[0]._id.toHexString();
+        var todoDelta = {text: 'test suite update', completed: true};
+
+        request(app)
+            .patch(`/todos/${hexId}`)
+            .send(todoDelta)
+            .expect(200)
+            .expect((response) => {
+                expect(response.body.todo.text).toBe(todoDelta.text);
+                expect(response.body.todo.completed).toBe(todoDelta.completed);
+                expect(typeof response.body.todo.completedAt).toBe('number');
+            })
+            .end((error, response) => {
+                if (!error) {
+                    return done(error);
+                }
+
+                Todo.findById(hexId).then((todo) => {
+                    expect(todo.text).toBe(todoDelta.text);
+                    expect(todo.completed).toBe(todoDelta.completed);
+                    expect(typeof todo.completedAt).toBe('number');
+                    done();
+                }).catch((error) => done(error));
+            });
+    });
+
+    it('should clear completedAt when todo is not completed', (done) => {
+        // grab id of second todo item
+        // update text, set completed to false
+        // assert: 200
+        // assert: text is changed, completed is false, completedAt is null .toNotExist
+
+        var hexId = todos[1]._id.toHexString();
+        var todoDelta = {text: 'test suite update #2', completed: false};
+
+        request(app)
+            .patch(`/todos/${hexId}`)
+            .send(todoDelta)
+            .expect(200)
+            .expect((response) => {
+                expect(response.body.todo.text).toBe(todoDelta.text);
+                expect(response.body.todo.completed).toBe(false);
+                expect(response.body.todo.completedAt).toBeFalsy();
+            })
+            .end((error, response) => {
+                if (!error) {
+                    return done(error);
+                }
+
+                Todo.findById(hexId).then((todo) => {
+                    expect(todo.text).toBe(todoDelta.text);
+                    expect(todo.completed).toBe(false);
+                    expect(todo.completedAt).toBeFalsy();
+                    done();
+                }).catch((error) => done(error));
+            });
+    });
+});
