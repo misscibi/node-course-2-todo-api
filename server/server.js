@@ -1,4 +1,6 @@
 // Express route handlers will be stored in server.js
+require('./config/config');
+
 const _ = require('lodash');
 const express = require('express');
 const bodyParser = require('body-parser');

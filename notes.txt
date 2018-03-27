@@ -46,3 +46,6 @@ C:\Users\CB\WebstormProjects\node-todo-api>heroku logs
 2018-03-22T04:10:43.389908+00:00 heroku[web.1]: State changed from starting to up
 
 C:\Users\CB\WebstormProjects\node-todo-api>
+
+NODE_ENV variable
+Note that Heroku uses the Linux environment.
