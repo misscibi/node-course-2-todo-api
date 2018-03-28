@@ -146,7 +146,7 @@ app.post('/users', (request, response) => {
         // response.send(document);
     }).then((token) => {
         // custom header to store that jwt
-        response.header(`x-auth`, token).send(user);
+        response.header('x-auth', token).send(user);
     }).catch((error) => {
         response.status(400).send(error);
     });
@@ -170,6 +170,38 @@ app.get('/users/me', authenticate, (request, response) => {
 //         response.status(401).send();
 //     });
 // });
+
+// POST /users/login (email, password) - using bcrypt's decrypt thing
+app.post('/users/login', (request, response) => {
+    var body = _.pick(request.body, ['email', 'password']);
+
+    User.findByCredentials(body.email, body.password).then((user) => {
+        // create new token
+        user.generateAuthToken().then((token) => {
+            response.header('x-auth', token).send(user);
+        });
+        // response.send(user);
+    }).catch((error) => {
+        response.status(400).send(error);
+    });
+    // User.findOne({
+    //     email: body.email
+    // }).then((user) => {
+    //     if (!user) {
+    //         return response.status(404).send();
+    //     }
+    //
+    //     user.validatePassword(body.password).then((isValid) => {
+    //         if (!isValid) {
+    //             return response.status(401).send();
+    //         }
+    //         response.send(user);
+    //     });
+    //
+    // }).catch((error) => {
+    //     response.status(400).send(error);
+    // });
+});
 
 
 app.listen(port, () => {

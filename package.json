@@ -7,7 +7,7 @@
     "start": "node server/server.js",
     "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/*.test.js",
     "test-watch": "nodemon --exec \"npm test -- --timeout=10000\"",
-    "dev-test": "nodemon --inspect-brk \"server/server.js\""
+    "test-dev": "nodemon --inspect-brk \"server/server.js\""
   },
   "engines": {
     "node": "9.8.0"

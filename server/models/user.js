@@ -66,6 +66,14 @@ UserSchema.methods.generateAuthToken = function () {
     // });
 };
 
+
+// NOT ELEGANT...
+// UserSchema.methods.validatePassword = function (password) {
+//     var user = this;
+//
+//     return bcrypt.compare(password, user.password);
+// }
+
 // Model method
 UserSchema.statics.findByToken = function (token) {
     var User = this;
@@ -84,6 +92,28 @@ UserSchema.statics.findByToken = function (token) {
         '_id': decoded._id,
         'tokens.token': token,
         'tokens.access': 'auth'
+    });
+};
+
+// returns a Promise with user
+// or error if user doesn't exist
+UserSchema.statics.findByCredentials = function (email, password) {
+    var User = this;
+
+    return User.findOne({email}).then((user) => {
+        if (!user) {
+            return Promise.reject();
+        }
+
+        return new Promise((resolve, reject) => {
+            bcrypt.compare(password, user.password, (error, response) => {
+                if (response) {
+                    resolve(user);
+                } else {
+                    reject();
+                }
+            });
+        });
     });
 };
 
