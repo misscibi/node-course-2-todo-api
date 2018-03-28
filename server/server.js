@@ -130,6 +130,27 @@ app.patch('/todos/:id', (request, response) => {
     }).catch((error) => response.status(400).send());
 });
 
+app.post('/users', (request, response) => {
+    // var user = new User({
+    //     email: request.body.email
+    // });
+    var body = _.pick(request.body, ['email', 'password']);
+    var user = new User(body);
+
+    // Model methods - User
+    // instance methods - user
+
+    user.save().then(() => {
+        return user.generateAuthToken();
+        // response.send(document);
+    }).then((token) => {
+        // custom header to store that jwt
+        response.header(`x-auth`, token).send(user);
+    }).catch((error) => {
+        response.status(400).send(error);
+    });
+});
+
 app.listen(port, () => {
     console.log(`Started on port ${port}`);
 });
