@@ -9,6 +9,7 @@ const {ObjectID} = require('mongodb');
 var {mongoose} = require('./db/mongoose');
 var {Todo} = require('./models/todo');
 var {User} = require('./models/user');
+var {authenticate} = require('./middleware/authenticate');
 
 var app = express();
 const port = process.env.PORT || 3000;
@@ -150,6 +151,26 @@ app.post('/users', (request, response) => {
         response.status(400).send(error);
     });
 });
+
+app.get('/users/me', authenticate, (request, response) => {
+    response.send(request.user);
+});
+
+// app.get('/users/me', authenticate, (request, response) => {
+//     var token = request.header('x-auth');
+//
+//     User.findByToken(token).then((user) => {
+//         if (!user) {
+//             return Promise.reject();
+//         }
+//
+//         response.send(user);
+//     }).catch((error) => {
+//         // catch the rejected Promise when then() does not fire
+//         response.status(401).send();
+//     });
+// });
+
 
 app.listen(port, () => {
     console.log(`Started on port ${port}`);
