@@ -49,3 +49,27 @@ C:\Users\CB\WebstormProjects\node-todo-api>
 
 NODE_ENV variable
 Note that Heroku uses the Linux environment.
+
+
+
+C:\Users\CB\WebstormProjects\node-todo-api>heroku config
+=== damp-fortress-44531 Config Vars
+MONGODB_URI: mongodb://heroku_f2vqrcj8:f31alr7d6qn98ata37ein3nut8@ds121589.mlab.com:21589/heroku_f2vqrcj8
+
+C:\Users\CB\WebstormProjects\node-todo-api>heroku config:set NAME=Christabel
+Setting NAME and restarting ⬢ damp-fortress-44531... done, v8
+NAME: Christabel
+
+
+C:\Users\CB\WebstormProjects\node-todo-api>heroku config
+=== damp-fortress-44531 Config Vars
+MONGODB_URI: mongodb://heroku_f2vqrcj8:f31alr7d6qn98ata37ein3nut8@ds121589.mlab.com:21589/heroku_f2vqrcj8
+NAME:        Christabel
+
+C:\Users\CB\WebstormProjects\node-todo-api>heroku config:get NAME
+Christabel
+
+C:\Users\CB\WebstormProjects\node-todo-api>heroku config:unset NAME
+Unsetting NAME and restarting ⬢ damp-fortress-44531... done, v9
+
+C:\Users\CB\WebstormProjects\node-todo-api>
