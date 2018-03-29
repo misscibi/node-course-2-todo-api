@@ -1,6 +1,7 @@
 var {User} = require('./../models/user');
 
 // middleware for private routes
+// the 2 objects (user, token) will then be accessible by server.js
 var authenticate = (request, response, next) => {
     var token = request.header('x-auth');
 
