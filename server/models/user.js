@@ -66,6 +66,24 @@ UserSchema.methods.generateAuthToken = function () {
     // });
 };
 
+UserSchema.methods.removeToken = function (token) {
+    var user = this;
+
+    // $pull - remove something if something matches the criteria
+    return user.update({
+        $pull: {
+            tokens: {token}
+        }
+    });
+    // return user.update({
+    //     $pull: {
+    //         tokens: {
+    //             token: token
+    //         }
+    //     }
+    // });
+};
+
 
 // NOT ELEGANT...
 // UserSchema.methods.validatePassword = function (password) {
